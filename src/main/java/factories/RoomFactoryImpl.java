@@ -1,10 +1,8 @@
 package factories;
 
 import models.Element;
-import models.Position;
 import models.Room;
-import models.Size;
-import models.properties.ElementProperty;
+
 import models.properties.RoomProperty;
 
 import java.util.ArrayList;
@@ -24,7 +22,7 @@ public class RoomFactoryImpl implements RoomFactory {
         String[] roomLine = new String[10];
 
         for (int i = 0; i < lines.size(); i++) {
-            if (lines.contains(COUNT_ELEMENTS)) {
+            if (lines[i].contains(COUNT_ELEMENTS)) {
                 roomLine = lines.get(i).split(separator);
                 break;
             } else i = i + 1;
@@ -37,17 +35,17 @@ public class RoomFactoryImpl implements RoomFactory {
         roomDetails.put(RoomProperty.HEIGHT, roomLine[3]);
         roomDetails.put(RoomProperty.COUNT_ELEMENTS, roomLine[4]);
 
-
-        for (int i = 0; i <COUNT_ELEMENTS ; i++) {
-            ElementFactory shinyElement = new ElementFactoryImpl();
-            shinyElement.createElement(String, String);
+        List eleList = new ArrayList();
+        for (int i = 0; i <lines.size() ; i++) {
+            Element element = elementFactory.createElement(lines.get(i), separator);
+            eleList.add(element);
         }
-
 
         String name = roomDetails.get(RoomProperty.ROOM_NAME);
         String colorHex = roomDetails.get(RoomProperty.ROOM_COLOR_HEX);
         Float area = Float.parseFloat(roomDetails.get(RoomProperty.AREA));
         Float height = Float.parseFloat(roomDetails.get(RoomProperty.HEIGHT));
+
 
 
         return new Room(name, colorHex, area, height, elements);
