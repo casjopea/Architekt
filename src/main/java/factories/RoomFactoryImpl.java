@@ -19,14 +19,7 @@ public class RoomFactoryImpl implements RoomFactory {
     public Room createRoom(List<String> lines, String separator) {
         // create room using element Factory to create each element
 
-        String[] roomLine = new String[10];
-
-        for (int i = 0; i < lines.size(); i++) {
-            if (lines[i].contains(COUNT_ELEMENTS)) {
-                roomLine = lines.get(i).split(separator);
-                break;
-            } else i = i + 1;
-        }
+        String[] roomLine = lines.get(0).split(separator);
 
         Map<RoomProperty, String> roomDetails = new EnumMap<>(RoomProperty.class);
         roomDetails.put(RoomProperty.ROOM_NAME, roomLine[0]);
@@ -35,7 +28,7 @@ public class RoomFactoryImpl implements RoomFactory {
         roomDetails.put(RoomProperty.HEIGHT, roomLine[3]);
         roomDetails.put(RoomProperty.COUNT_ELEMENTS, roomLine[4]);
 
-        List eleList = new ArrayList();
+        List <Element> eleList = new ArrayList();
         for (int i = 0; i <lines.size() ; i++) {
             Element element = elementFactory.createElement(lines.get(i), separator);
             eleList.add(element);
@@ -46,8 +39,6 @@ public class RoomFactoryImpl implements RoomFactory {
         Float area = Float.parseFloat(roomDetails.get(RoomProperty.AREA));
         Float height = Float.parseFloat(roomDetails.get(RoomProperty.HEIGHT));
 
-
-
-        return new Room(name, colorHex, area, height, elements);
+        return new Room(name, colorHex, area, height, eleList);
     }
 }
