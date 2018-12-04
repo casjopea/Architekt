@@ -10,8 +10,6 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
-import static models.properties.RoomProperty.COUNT_ELEMENTS;
-
 public class RoomFactoryImpl implements RoomFactory {
     ElementFactory elementFactory = new ElementFactoryImpl();
 
@@ -28,8 +26,9 @@ public class RoomFactoryImpl implements RoomFactory {
         roomDetails.put(RoomProperty.HEIGHT, roomLine[3]);
         roomDetails.put(RoomProperty.COUNT_ELEMENTS, roomLine[4]);
 
-        List <Element> eleList = new ArrayList();
-        for (int i = 0; i <lines.size() ; i++) {
+        int countEle = Integer.parseInt(roomDetails.get(RoomProperty.COUNT_ELEMENTS));
+        List<Element> eleList = new ArrayList<>();
+        for (int i = 1; i < countEle; i++) {
             Element element = elementFactory.createElement(lines.get(i), separator);
             eleList.add(element);
         }
