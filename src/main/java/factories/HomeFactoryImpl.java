@@ -26,11 +26,21 @@ public class HomeFactoryImpl implements HomeFactory {
         homeDetails.put(HomeProperty.ROOMS_COUNT, roomLine[3]);
 
         int countRooms = Integer.parseInt(homeDetails.get(HomeProperty.ROOMS_COUNT));
-        List<Element> roomsList = new ArrayList<>();
-        for (int i = 1; i < countRooms; i++) {
-            Room room = RoomFactory.createRoom(lines.get(i), separator);
+
+
+        List<Room> roomsList = new ArrayList<>();
+        int start = 1;
+        for (int i = 0; i < countRooms; i++) {
+            List<String> stringList = lines.subList(start, lines.size());
+            Room room = roomFactory.createRoom(stringList, separator);
             roomsList.add(room);
+            start = start + 1 + room.getElements().size();
         }
-        return new Home(name, address, householdCount, rooms);
+
+        String name = homeDetails.get(HomeProperty.HOME_NAME);
+        String address = homeDetails.get(HomeProperty.ADDRESS);
+        int householdCount = Integer.parseInt(homeDetails.get(HomeProperty.HOMEMADE_COUNT));
+
+        return new Home(name, address, householdCount, roomsList);
     }
 }

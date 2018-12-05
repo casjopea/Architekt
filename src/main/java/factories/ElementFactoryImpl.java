@@ -19,8 +19,8 @@ public class ElementFactoryImpl implements ElementFactory {
         elementDetails.put(ElementProperty.POSITION_Y, values[2]);
         elementDetails.put(ElementProperty.POSITION_Z, values[3]);
         elementDetails.put(ElementProperty.LENGTH, values[4]);
-        elementDetails.put(ElementProperty.HEIGHT, values[5]);
-        elementDetails.put(ElementProperty.WIDTH, values[6]);
+        elementDetails.put(ElementProperty.WIDTH  , values[5]);
+        elementDetails.put(ElementProperty.HEIGHT, values[6]);
         elementDetails.put(ElementProperty.WEIGHT, values[7]);
 
         String str = elementDetails.get(ElementProperty.ELEMENT_NAME);

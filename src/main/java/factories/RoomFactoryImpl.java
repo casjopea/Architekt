@@ -22,13 +22,13 @@ public class RoomFactoryImpl implements RoomFactory {
         Map<RoomProperty, String> roomDetails = new EnumMap<>(RoomProperty.class);
         roomDetails.put(RoomProperty.ROOM_NAME, roomLine[0]);
         roomDetails.put(RoomProperty.ROOM_COLOR_HEX, roomLine[1]);
-        roomDetails.put(RoomProperty.AREA, roomLine[2]);
-        roomDetails.put(RoomProperty.HEIGHT, roomLine[3]);
+        roomDetails.put(RoomProperty.HEIGHT, roomLine[2]);
+        roomDetails.put(RoomProperty.AREA, roomLine[3]);
         roomDetails.put(RoomProperty.COUNT_ELEMENTS, roomLine[4]);
 
         int countEle = Integer.parseInt(roomDetails.get(RoomProperty.COUNT_ELEMENTS));
         List<Element> eleList = new ArrayList<>();
-        for (int i = 1; i < countEle; i++) {
+        for (int i = 1; i <= countEle; i++) {
             Element element = elementFactory.createElement(lines.get(i), separator);
             eleList.add(element);
         }

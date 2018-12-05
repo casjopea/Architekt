@@ -8,5 +8,6 @@ public class HomeLoaderImpl implements HomeLoader {
     @Override
     public Home loadHome(String fileName, String separator) {
         //load file and use home factory to create home
+        return null;
     }
 }
